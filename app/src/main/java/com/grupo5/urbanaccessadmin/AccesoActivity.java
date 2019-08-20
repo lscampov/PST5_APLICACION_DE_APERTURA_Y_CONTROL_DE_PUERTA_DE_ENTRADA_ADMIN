@@ -57,7 +57,7 @@ public class AccesoActivity extends AppCompatActivity {
                 Toast.makeText(AccesoActivity.this,"Conexión Establecida", Toast.LENGTH_LONG).show();
                 user=resultadoSQL[0];
                 psw=resultadoSQL[1];
-               if(psw.equals(txt2.getText().toString())){
+               if(txt2.getText().toString().equals(psw)){
                     Intent i = new Intent(this, MenuActivity.class );
                     startActivity(i);
                     Toast.makeText(this, "Ingreso Exitoso.", Toast.LENGTH_LONG).show();

@@ -33,4 +33,10 @@ public class MenuActivity extends AppCompatActivity {
         Intent i = new Intent(this, VillaActivity.class );
         startActivity(i);
     }
+
+    public void modificarEliminar(View view) {
+        Intent i = new Intent(this, ModificarEliminarActivity.class );
+        startActivity(i);
+    }
+
 }
