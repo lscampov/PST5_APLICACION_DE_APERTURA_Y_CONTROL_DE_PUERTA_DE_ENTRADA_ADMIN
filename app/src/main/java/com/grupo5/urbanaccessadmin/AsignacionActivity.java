@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AsignacionActivity extends AppCompatActivity {
@@ -14,19 +15,23 @@ public class AsignacionActivity extends AppCompatActivity {
     private String pwdMySQL = "oPAE3gP5fa";
     private String database = "WAgQ6gLNl1";
     private String[] datosConexion = null;
-    private EditText txt1,txt2,txt3;
-    private String codigo,idResidente;
+    private EditText cedula, mz,villa;
+    private TextView idR,clave,idV;
+    private String codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignacion);
-        txt1= (EditText)findViewById(R.id.edit1);
-        txt2= (EditText)findViewById(R.id.editText10);
-        txt3= (EditText)findViewById(R.id.editText11);
+        cedula= (EditText)findViewById(R.id.editTextcedula);
+        mz= (EditText)findViewById(R.id.editTextmz);
+        villa= (EditText)findViewById(R.id.editTextvilla);
+        idR= (TextView)findViewById(R.id.textViewID);
+        idV= (TextView)findViewById(R.id.textViewVilla);
+        clave= (TextView)findViewById(R.id.textViewClave);
     }
 
-    public void consulta(View view){
+    public void consultaResidente(View view){
         String[] resultadoSQL = null;
         try {
             String driver = "com.mysql.jdbc.Driver";
@@ -39,26 +44,17 @@ public class AsignacionActivity extends AppCompatActivity {
                     userMySQL,
                     pwdMySQL,
                     codigo="4",
-                    txt1.getText().toString(),
-                    txt2.getText().toString(),
-                    txt3.getText().toString()
+                    cedula.getText().toString()
 
             };
 
-            if(txt1.getText().toString().equals("")|| txt2.getText().toString().equals("")|| txt3.getText().toString().equals("")){
-                Toast.makeText(this, "Debe ingresar todos los datos.", Toast.LENGTH_LONG).show();
+            if(cedula.getText().toString().equals("")){
+                Toast.makeText(this, "Debe el dato cédula.", Toast.LENGTH_LONG).show();
             }else{
                 resultadoSQL = new AsyncQuery().execute(datosConexion).get();
-                idResidente=resultadoSQL[0];
-                if (idResidente.equals("")){
-                    Toast.makeText(this, "Dato no encontrado.", Toast.LENGTH_LONG).show();
-                }else{
-                    new AsyncQuery().execute(datosConexion);
-                    txt1.setText("");
-                    txt2.setText("");
-                    txt3.setText("");
-                    Toast.makeText(AsignacionActivity.this,"Dato Agregado.", Toast.LENGTH_LONG).show();
-                }
+                idR.setText(resultadoSQL[0]);
+                clave.setText(resultadoSQL[1]);
+                Toast.makeText(AsignacionActivity.this,"Conexión Establecida", Toast.LENGTH_LONG).show();
 
             }
 
@@ -69,4 +65,74 @@ public class AsignacionActivity extends AppCompatActivity {
                     + ex.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
+    public void consultaVilla(View view){
+        String[] resultadoSQL = null;
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            Class.forName(driver).newInstance();
+
+            datosConexion = new String[]{
+                    serverIP,
+                    port,
+                    database,
+                    userMySQL,
+                    pwdMySQL,
+                    codigo="7",
+                    mz.getText().toString(),
+                    villa.getText().toString()
+
+            };
+
+            if(mz.getText().toString().equals("")){
+                Toast.makeText(this, "Debe el dato cédula.", Toast.LENGTH_LONG).show();
+            }else{
+                resultadoSQL = new AsyncQuery().execute(datosConexion).get();
+                idV.setText(resultadoSQL[0]);
+                Toast.makeText(AsignacionActivity.this,"Conexión Establecida", Toast.LENGTH_LONG).show();
+            }
+
+        }catch(Exception ex)
+        {
+            Toast.makeText(this, "Error: "
+                    + ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void agregarAsignacion(View view){
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            Class.forName(driver).newInstance();
+
+            datosConexion = new String[]{
+                    serverIP,
+                    port,
+                    database,
+                    userMySQL,
+                    pwdMySQL,
+                    codigo="8",
+                    idR.getText().toString(),
+                    idV.getText().toString(),
+                    clave.getText().toString()
+
+            };
+
+            if(idV.getText().toString().equals("")|| idR.getText().toString().equals("")|| clave.getText().toString().equals("")){
+                Toast.makeText(this, "Primero debe consultar.", Toast.LENGTH_LONG).show();
+            }else{
+                new AsyncQuery().execute(datosConexion);
+                Toast.makeText(AsignacionActivity.this,"Dato Agregado.", Toast.LENGTH_LONG).show();
+            }
+
+
+        }catch(Exception ex)
+        {
+            Toast.makeText(this, "Error: "
+                    + ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
+
+
+

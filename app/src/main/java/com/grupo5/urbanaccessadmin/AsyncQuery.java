@@ -32,7 +32,6 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
         String mz,villa,longitud,latitud,fecha;
         String email ;
         String perfil ;
-        String Id_Usuario;
         String codigo=datos[0][5];
         String resultadoSQL = "";
         String[] totalResultadoSQL = null;
@@ -43,7 +42,7 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
         String BD = datos[0][2];
         String USUARIO = datos[0][3];
         String PASSWORD = datos[0][4];
-        String clave_acceso;
+        String clave_acceso,id_residente,id_villa;
 
         try{
             conexionMySQL = DriverManager.getConnection("jdbc:mysql://" + SERVIDOR + ":" + PUERTO + "/" + BD,
@@ -51,6 +50,7 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
 
             st = conexionMySQL.createStatement();
 
+            //agg admin y resident
             if(codigo.equals("1")){
                 nombre1 = datos[0][9];
                 nombre2 = datos[0][10];
@@ -82,6 +82,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                     Log.d("Query: ",q);
                     st.executeUpdate(q);
                 }
+
+                //validar acceso
             }if(codigo.equals("2")){
                 user= datos[0][6];
                 password= datos[0][7];
@@ -104,6 +106,7 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                         }
                 }
 
+                //agg villa
             }if(codigo.equals("3")){
                 mz=datos[0][6];
                 villa=datos[0][7];
@@ -114,11 +117,9 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                 Log.d("Query: ",q);
                 st.executeUpdate(q);
 
-
+                //consulta por cedula
             }if(codigo.equals("4")){
                 cedula=datos[0][6];
-                mz=datos[0][7];
-                villa=datos[0][8];
                 rs = st.executeQuery("SELECT Id_Usuario,clave_acceso FROM Usuario WHERE Cedula='"+cedula+"';");
                 rs.last();
                 numFilas = rs.getRow();
@@ -137,14 +138,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                         }
                     }
                 }
-                Id_Usuario=totalResultadoSQL[0];
-                clave_acceso=totalResultadoSQL[1];
-                //String q = "INSERT INTO Asignacion (Id_Usuario,Id_Villa,CLave_de_Acceso) VALUES " +
-                       // "('" +Id_Usuario+"','"++ "','"+clave_acceso+ "')";
-                //Log.d("Query: ",q);
-                //st.executeUpdate(q);
 
-
+                //consulta entrada
             }if(codigo.equals("5")) {
                 fecha = datos[0][6];
                 rs = st.executeQuery("SELECT * FROM Entrada;");
@@ -169,6 +164,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                     }
                 }
                 totalResultadoSQL = new String[]{resultadoSQL};
+
+                //modificar eliminar
             }if(codigo.equals("6")) {
                 //140989
                 //rs = st.executeQuery("SELECT User,Password FROM Usuario WHERE User='"+user+"';");
@@ -193,8 +190,37 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                     }
                 }
 
+                //consulta por villa y mz
+            }if(codigo.equals("7")) {
+                mz = datos[0][6];
+                villa = datos[0][7];
+                rs = st.executeQuery("SELECT id_Villa FROM Villa WHERE Mz='" + mz + "' AND Villa='"+villa+"';");
+                rs.last();
+                numFilas = rs.getRow();
+                if (numFilas == 0) {
+                    resultadoSQL = "No se ha producido ningún resultado. Revise la consulta realizada.\n";
+                } else {
+                    rs.beforeFirst();
+                    while (rs.next()) {
+                        numColumnas = rs.getMetaData().getColumnCount();
+                        for (int i = 1; i <= numColumnas; i++) {
+                            totalResultadoSQL = new String[1];
+                            totalResultadoSQL[i - 1] = rs.getString(i);
+                        }
+                    }
+                }
 
-            }
+            //asignacion
+            }if(codigo.equals("8")){
+            id_residente=datos[0][6];
+            id_villa=datos[0][7];
+            clave_acceso=datos[0][8];
+            String q = "INSERT INTO Asignacion (Id_Usuario,Id_Villa,Clave_de_Acceso) VALUES " +
+                    "('" + id_residente + "','" + id_villa + "','" +clave_acceso+"')";
+            Log.d("Query: ",q);
+            st.executeUpdate(q);
+
+        }
 
         }catch(SQLException ex)
         {

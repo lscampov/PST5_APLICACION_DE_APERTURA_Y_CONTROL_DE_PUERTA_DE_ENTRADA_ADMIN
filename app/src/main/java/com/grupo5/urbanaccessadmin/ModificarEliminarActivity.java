@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +31,8 @@ public class ModificarEliminarActivity extends AppCompatActivity {
         txt2 = (TextView)findViewById(R.id.textView12);
         txt3 = (TextView)findViewById(R.id.textView14);
         txt4 = (TextView)findViewById(R.id.textView16);
-        txt5 = (EditText) findViewById(R.id.editText10);
-        txt6 = (EditText) findViewById(R.id.editText11);
+        txt5 = (EditText) findViewById(R.id.editTextmz);
+        txt6 = (EditText) findViewById(R.id.editTextvilla);
         txt7 = (EditText) findViewById(R.id.editText12);
         txt8 = (EditText) findViewById(R.id.editText13);
         txt9 = (EditText) findViewById(R.id.editText9);
