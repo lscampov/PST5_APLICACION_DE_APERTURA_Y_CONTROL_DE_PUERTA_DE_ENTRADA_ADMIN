@@ -99,8 +99,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                         while (rs.next())
                         {
                             numColumnas = rs.getMetaData().getColumnCount();
+                            totalResultadoSQL=new String[2];
                             for(int i=1;i<=numColumnas;i++){
-                                totalResultadoSQL=new String[2];
                                 totalResultadoSQL[i-1]= rs.getString(i);
                             }
                         }
@@ -120,7 +120,7 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                 //consulta por cedula
             }if(codigo.equals("4")){
                 cedula=datos[0][6];
-                rs = st.executeQuery("SELECT Id_Usuario,clave_acceso FROM Usuario WHERE Cedula='"+cedula+"';");
+                rs = st.executeQuery("SELECT Id_Usuario, clave_acceso FROM Usuario WHERE Cedula='"+cedula+"';");
                 rs.last();
                 numFilas = rs.getRow();
                 if(numFilas == 0)
@@ -132,8 +132,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                     while (rs.next())
                     {
                         numColumnas = rs.getMetaData().getColumnCount();
+                        totalResultadoSQL=new String[2];
                         for(int i=1;i<=numColumnas;i++){
-                            totalResultadoSQL=new String[2];
                             totalResultadoSQL[i-1]= rs.getString(i);
                         }
                     }
@@ -182,7 +182,6 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                         numColumnas = rs.getMetaData().getColumnCount();
                         totalResultadoSQL=new String[9];
                         for(int i=1;i<=numColumnas;i++){
-
                             totalResultadoSQL[i-1]= rs.getString(i);
                         }
                     }
@@ -201,8 +200,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                     rs.beforeFirst();
                     while (rs.next()) {
                         numColumnas = rs.getMetaData().getColumnCount();
+                        totalResultadoSQL = new String[1];
                         for (int i = 1; i <= numColumnas; i++) {
-                            totalResultadoSQL = new String[1];
                             totalResultadoSQL[i - 1] = rs.getString(i);
                         }
                     }
@@ -230,8 +229,8 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                     rs.beforeFirst();
                     while (rs.next()) {
                         numColumnas = rs.getMetaData().getColumnCount();
+                        totalResultadoSQL = new String[8];
                         for (int i = 1; i <= numColumnas; i++) {
-                            totalResultadoSQL = new String[1];
                             totalResultadoSQL[i - 1] = rs.getString(i);
                         }
                     }

@@ -26,7 +26,7 @@ public class AsignacionActivity extends AppCompatActivity {
         cedula= (EditText)findViewById(R.id.editTextcedula);
         mz= (EditText)findViewById(R.id.editTextmz);
         villa= (EditText)findViewById(R.id.editTextvilla);
-        idR= (TextView)findViewById(R.id.textViewID);
+        idR= (TextView)findViewById(R.id.textView378);
         idV= (TextView)findViewById(R.id.textViewVilla);
         clave= (TextView)findViewById(R.id.textViewClave);
     }
@@ -117,7 +117,7 @@ public class AsignacionActivity extends AppCompatActivity {
 
             };
 
-            if(idV.getText().toString().equals("")|| idR.getText().toString().equals("")|| clave.getText().toString().equals("")){
+            if(idV.getText().toString().equals("")|| clave.getText().toString().equals("")){
                 Toast.makeText(this, "Primero debe consultar.", Toast.LENGTH_LONG).show();
             }else{
                 new AsyncQuery().execute(datosConexion);

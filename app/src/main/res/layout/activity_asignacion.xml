@@ -91,11 +91,11 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextcedula" />
 
     <TextView
-        android:id="@+id/textViewID"
-        android:layout_width="208dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="22dp"
+        android:id="@+id/textView378"
+        android:layout_width="194dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/editTextcedula" />
 
@@ -113,7 +113,7 @@
         android:layout_width="188dp"
         android:layout_height="29dp"
         app:layout_constraintStart_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/textViewID" />
+        app:layout_constraintTop_toBottomOf="@+id/textView378" />
 
     <TextView
         android:id="@+id/textView25"
