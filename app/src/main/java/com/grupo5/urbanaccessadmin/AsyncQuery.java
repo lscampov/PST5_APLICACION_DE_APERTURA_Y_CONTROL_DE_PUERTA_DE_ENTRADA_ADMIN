@@ -220,7 +220,49 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
             Log.d("Query: ",q);
             st.executeUpdate(q);
 
-        }
+            //consulta para  modificar
+        }if (codigo.equals("9")){
+                cedula = datos[0][6];
+                rs = st.executeQuery("SELECT Nombre1,Nombre2,Apellido1,Apellido2,User,Password,email,clave_acceso FROM Usuario WHERE Cedula='"+cedula+"';");
+                rs.last();
+                numFilas = rs.getRow();
+                if (numFilas == 0) {
+                    resultadoSQL = "No se ha producido ningún resultado. Revise la consulta realizada.\n";
+                } else {
+                    rs.beforeFirst();
+                    while (rs.next()) {
+                        numColumnas = rs.getMetaData().getColumnCount();
+                        for (int i = 1; i <= numColumnas; i++) {
+                            totalResultadoSQL = new String[1];
+                            totalResultadoSQL[i - 1] = rs.getString(i);
+                        }
+                    }
+                }
+            }
+
+            //modificar
+            if (codigo.equals("10")){
+                cedula = datos[0][6];
+                nombre1= datos[0][7];
+                nombre2= datos[0][8];
+                apellido1= datos[0][9];
+                apellido2= datos[0][10];
+                email= datos[0][11];
+                user= datos[0][12];
+                password= datos[0][13];
+                clave_acceso= datos[0][14];
+                String q = "UPDATE Usuario SET Nombre1='"+nombre1+"',Nombre2='"+nombre2+"',Apellido1='"+apellido1+"',Apellido2='"+apellido2+"',User='"+user+"',Password='"+password+"',email='"+email+"',clave_acceso='"+clave_acceso+" WHERE Cedula='"+cedula+"'";
+                Log.d("Query: ",q);
+                st.executeUpdate(q);
+            }
+
+            //eliminar
+            if (codigo.equals("11")){
+                cedula = datos[0][6];
+                String q = "DELETE FROM Usuario WHERE Cedula='"+cedula+"'";
+                Log.d("Query: ",q);
+                st.executeUpdate(q);
+            }
 
         }catch(SQLException ex)
         {

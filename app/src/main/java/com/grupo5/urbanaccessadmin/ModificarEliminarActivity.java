@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ModificarEliminarActivity extends AppCompatActivity {
@@ -17,8 +16,7 @@ public class ModificarEliminarActivity extends AppCompatActivity {
     private String pwdMySQL = "oPAE3gP5fa";
     private String database = "WAgQ6gLNl1";
     private String[] datosConexion = null;
-    private TextView txt1,txt2,txt3,txt4;
-    private EditText txt5,txt6,txt7,txt8,txt9;
+    private EditText cedula,n1,n2,a1,a2,mail,user,psw,clave;
     private String codigo;
 
 
@@ -27,19 +25,19 @@ public class ModificarEliminarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar_eliminar);
 
-        txt1 = (TextView) findViewById(R.id.textView10);
-        txt2 = (TextView)findViewById(R.id.textView12);
-        txt3 = (TextView)findViewById(R.id.textView14);
-        txt4 = (TextView)findViewById(R.id.textView16);
-        txt5 = (EditText) findViewById(R.id.editTextmz);
-        txt6 = (EditText) findViewById(R.id.editTextvilla);
-        txt7 = (EditText) findViewById(R.id.editText12);
-        txt8 = (EditText) findViewById(R.id.editText13);
-        txt9 = (EditText) findViewById(R.id.editText9);
+        cedula = (EditText) findViewById(R.id.editTextCedulaME);
+        n1= (EditText) findViewById(R.id.editTextNombre1);
+        n2= (EditText) findViewById(R.id.editTextNombre2);
+        a1= (EditText) findViewById(R.id.editTextApellido);
+        a2= (EditText) findViewById(R.id.editTextApellido2);
+        mail= (EditText) findViewById(R.id.editTextMail);
+        user= (EditText) findViewById(R.id.editTextUser);
+        psw= (EditText) findViewById(R.id.editTextPsw);
+        clave= (EditText) findViewById(R.id.editTextClave);
 
      }
 
-    public void buscarModificar(View v){
+    public void buscar(View v){
         String[] resultadoSQL = null;
 
             try {
@@ -52,24 +50,23 @@ public class ModificarEliminarActivity extends AppCompatActivity {
                         database,
                         userMySQL,
                         pwdMySQL,
-                        codigo="6",
-                        txt9.getText().toString()
+                        codigo="9",
+                        cedula.getText().toString()
 
                 };
 
-                if(txt9.getText().toString().equals("")){
-                    Toast.makeText(this, "Debe ingresar todos los datos.", Toast.LENGTH_LONG).show();
+                if(cedula.getText().toString().equals("")){
+                    Toast.makeText(this, "Debe el dato cédula.", Toast.LENGTH_LONG).show();
                 }else{
                     resultadoSQL = new AsyncQuery().execute(datosConexion).get();
-                    txt1.setText(resultadoSQL[2]);
-                    txt2.setText(resultadoSQL[3]);
-                    txt3.setText(resultadoSQL[4]);
-                    txt4.setText(resultadoSQL[5]);
-                    txt5.setText(resultadoSQL[8]);
-                    txt6.setText(resultadoSQL[6]);
-                    txt7.setText(resultadoSQL[7]);
-                    txt8.setText(resultadoSQL[0]);
-
+                    n1.setText(resultadoSQL[0]);
+                    n2.setText(resultadoSQL[1]);
+                    a1.setText(resultadoSQL[2]);
+                    a2.setText(resultadoSQL[3]);
+                    mail.setText(resultadoSQL[6]);
+                    user.setText(resultadoSQL[4]);
+                    psw.setText(resultadoSQL[5]);
+                    clave.setText(resultadoSQL[7]);
                     Toast.makeText(this,"Conexión Establecida", Toast.LENGTH_LONG).show();
                 }
 
@@ -80,5 +77,80 @@ public class ModificarEliminarActivity extends AppCompatActivity {
                         + ex.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
+
+    public void Modificar(View view){
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            Class.forName(driver).newInstance();
+            datosConexion = new String[]{
+                    serverIP,
+                    port,
+                    database,
+                    userMySQL,
+                    pwdMySQL,
+                    codigo="10",
+                    cedula.getText().toString(),
+                    n1.getText().toString(),
+                    n2.getText().toString(),
+                    a1.getText().toString(),
+                    a2.getText().toString(),
+                    mail.getText().toString(),
+                    user.getText().toString(),
+                    psw.getText().toString(),
+                    clave.getText().toString()
+            };
+
+            if(cedula.getText().toString().equals("")){
+                Toast.makeText(this, "Debe consultar primero.", Toast.LENGTH_LONG).show();
+            }else{
+                new AsyncQuery().execute(datosConexion);
+                Toast.makeText(ModificarEliminarActivity.this,"Datos Actualizados.", Toast.LENGTH_LONG).show();
+            }
+
+
+        }catch(Exception ex)
+        {
+            Toast.makeText(this, "Error: "
+                    + ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void Eliminar(View view){
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            Class.forName(driver).newInstance();
+            datosConexion = new String[]{
+                    serverIP,
+                    port,
+                    database,
+                    userMySQL,
+                    pwdMySQL,
+                    codigo="11",
+                    cedula.getText().toString()
+            };
+
+            if(cedula.getText().toString().equals("")){
+                Toast.makeText(this, "Ingrese cédula.", Toast.LENGTH_LONG).show();
+            }else{
+                new AsyncQuery().execute(datosConexion);
+                cedula.setText("");
+                n1.setText("");
+                n2.setText("");
+                a1.setText("");
+                a2.setText("");
+                mail.setText("");
+                user.setText("");
+                psw.setText("");
+                clave.setText("");
+                Toast.makeText(ModificarEliminarActivity.this,"Dato Eliminado.", Toast.LENGTH_LONG).show();
+            }
+
+
+        }catch(Exception ex)
+        {
+            Toast.makeText(this, "Error: "
+                    + ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 
 }

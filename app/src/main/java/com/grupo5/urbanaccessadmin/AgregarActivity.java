@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,7 +33,7 @@ public class AgregarActivity extends AppCompatActivity {
         txt5 = (EditText)findViewById(R.id.editText5);
         txt6 = (EditText)findViewById(R.id.editText7);
         txt7 = (EditText)findViewById(R.id.editText8);
-        txt8 = (EditText)findViewById(R.id.editText9);
+        txt8 = (EditText)findViewById(R.id.editTextCedulaME);
 
         String [] perfiles= {"Administrador","Residente"};
         ArrayAdapter<String> adapter1= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, perfiles);
