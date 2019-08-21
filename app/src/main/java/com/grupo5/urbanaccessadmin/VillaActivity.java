@@ -39,7 +39,7 @@ public class VillaActivity extends AppCompatActivity {
                     database,
                     userMySQL,
                     pwdMySQL,
-                    codigo="3",
+                    codigo=" 3",
                     txt1.getText().toString(),
                     txt2.getText().toString(),
                     txt3.getText().toString(),
