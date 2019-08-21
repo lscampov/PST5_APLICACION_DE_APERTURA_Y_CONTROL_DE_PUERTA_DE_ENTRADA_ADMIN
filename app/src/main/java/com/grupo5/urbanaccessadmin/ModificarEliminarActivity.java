@@ -158,7 +158,7 @@ public class ModificarEliminarActivity extends AppCompatActivity {
         }
     }
 
-    public void enviar_correo(DialogInterface dialogInterface, int i){
+    public void enviar_correo(View view){
 
             if(cedula.getText().toString().equals("")){
                 Toast.makeText(this, "Inicialmente debe consultar la cédula.", Toast.LENGTH_LONG).show();
