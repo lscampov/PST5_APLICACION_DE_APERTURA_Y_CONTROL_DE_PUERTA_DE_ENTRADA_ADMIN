@@ -142,7 +142,7 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                 //consulta entrada
             }if(codigo.equals("5")) {
                 fecha = datos[0][6];
-                rs = st.executeQuery("SELECT * FROM Entrada;");
+                rs = st.executeQuery("SELECT * FROM Entrada WHERE Fecha='"+fecha+"';");
                 rs.last();
                 numFilas = rs.getRow();
                 if (numFilas == 0) {
@@ -167,8 +167,6 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
 
                 //modificar eliminar
             }if(codigo.equals("6")) {
-                //140989
-                //rs = st.executeQuery("SELECT User,Password FROM Usuario WHERE User='"+user+"';");
                 cedula = datos[0][6];
                 rs = st.executeQuery("SELECT clave_acceso,Cedula,Nombre1,Nombre2,Apellido1,Apellido2,User,Password,email FROM Usuario WHERE Cedula = '"+cedula+"';");
                 rs.last();

@@ -2,7 +2,11 @@ package com.grupo5.urbanaccessadmin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +22,7 @@ public class ModificarEliminarActivity extends AppCompatActivity {
     private String[] datosConexion = null;
     private EditText cedula,n1,n2,a1,a2,mail,user,psw,clave;
     private String codigo;
+    Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
 
     @Override
@@ -153,4 +158,35 @@ public class ModificarEliminarActivity extends AppCompatActivity {
         }
     }
 
+    public void enviar_correo(DialogInterface dialogInterface, int i){
+
+            if(cedula.getText().toString().equals("")){
+                Toast.makeText(this, "Inicialmente debe consultar la cédula.", Toast.LENGTH_LONG).show();
+            }else{
+                String[] to = {mail.getText().toString()};
+                String[] cc = {mail.getText().toString()};
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+                emailIntent.putExtra(Intent.EXTRA_CC, cc);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Envío de  Datos UrbanAccess Residente");
+
+
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Información\n" +
+                        "Usuario:" + user.getText().toString() + "\n" +
+                        "Contraseña:" + psw.getText().toString() + "\n" +
+                        "Clave De Acceso:" + clave.getText().toString() + "\n");
+
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Enviando Email"));
+                    Log.i("termina envio de email", "");
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(ModificarEliminarActivity.this, "No existe cliente Email instalado.", Toast.LENGTH_SHORT).show();
+
+
+                } }
+
+
+        }
 }
+
