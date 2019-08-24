@@ -27,12 +27,13 @@ public class AccesoActivity extends AppCompatActivity {
         txt2 = (EditText)findViewById(R.id.editText2);
     }
 
+    // Metodo para ingresar al menu principal
     public void inicio(View view){
         Intent i = new Intent(this, MenuActivity.class );
         startActivity(i);
     }
 
-    // Metodo para ingresar al menu principal
+    // Metodo para realizar la consulta a la base de datos cuando el administrador inicia sesion
     public void ingreso(View view){
         String[] resultadoSQL = null;
         try {

@@ -31,6 +31,7 @@ public class AsignacionActivity extends AppCompatActivity {
         clave= (TextView)findViewById(R.id.textViewClave);
     }
 
+    // Consultar la informacion de un residente,modificarla o eliminarla
     public void consultaResidente(View view){
         String[] resultadoSQL = null;
         try {
@@ -66,6 +67,7 @@ public class AsignacionActivity extends AppCompatActivity {
         }
     }
 
+    // Consultar informacion acerca de una villa
     public void consultaVilla(View view){
         String[] resultadoSQL = null;
         try {
@@ -99,6 +101,7 @@ public class AsignacionActivity extends AppCompatActivity {
         }
     }
 
+    // Relaciona los residentes con su villa
     public void agregarAsignacion(View view){
         try {
             String driver = "com.mysql.jdbc.Driver";

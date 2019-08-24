@@ -40,6 +40,7 @@ public class AgregarActivity extends AppCompatActivity {
         spinnerPerfil.setAdapter(adapter1);
     }
 
+    // Agregar el administrador o residente a la base de datos
     public void agregar(View view){
     try {
         String driver = "com.mysql.jdbc.Driver";
