@@ -32,6 +32,7 @@ public class AccesoActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    // Metodo para ingresar al menu principal
     public void ingreso(View view){
         String[] resultadoSQL = null;
         try {
