@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AsignacionActivity">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="315dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="54dp"
+        android:text="ASIGNACIÓN"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextcedula"
+        android:layout_width="291dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="Ingrese el número de Cédula"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="consultaResidente"
+        android:text="Consultar datos residente"
+        app:layout_constraintBottom_toTopOf="@+id/editTextmz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewClave" />
+
+    <EditText
+        android:id="@+id/editTextmz"
+        android:layout_width="286dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Ingrese Manzana"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button9" />
+
+    <EditText
+        android:id="@+id/editTextvilla"
+        android:layout_width="285dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Ingrese Villa"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextmz" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="20dp"
+        android:onClick="consultaVilla"
+        android:text="consultar dato villa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewVilla" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="97dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="22dp"
+        android:text="ID Residente:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextcedula" />
+
+    <TextView
+        android:id="@+id/textView378"
+        android:layout_width="194dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextcedula" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="119dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="45dp"
+        android:text="Clave de Acceso:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textViewClave"
+        android:layout_width="188dp"
+        android:layout_height="29dp"
+        app:layout_constraintStart_toEndOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/textView378" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:text="ID Villa:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextvilla" />
+
+    <TextView
+        android:id="@+id/textViewVilla"
+        android:layout_width="209dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/editTextvilla" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="36dp"
+        android:onClick="agregarAsignacion"
+        android:text="asignar villa a residente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
