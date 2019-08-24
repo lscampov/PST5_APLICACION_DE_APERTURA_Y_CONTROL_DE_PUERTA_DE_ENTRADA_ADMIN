@@ -14,6 +14,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
 
+    // Metodos para que con cada boton se abra la ventana que le corresponda
     public void agregarBtn(View view) {
         Intent i = new Intent(this, AgregarActivity.class );
         startActivity(i);
