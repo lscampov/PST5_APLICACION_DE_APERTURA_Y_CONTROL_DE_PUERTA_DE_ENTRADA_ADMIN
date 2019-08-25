@@ -248,7 +248,7 @@ public class AsyncQuery extends AsyncTask<String[],Void,String[]> {
                 user= datos[0][12];
                 password= datos[0][13];
                 clave_acceso= datos[0][14];
-                String q = "UPDATE Usuario SET Nombre1='"+nombre1+"',Nombre2='"+nombre2+"',Apellido1='"+apellido1+"',Apellido2='"+apellido2+"',User='"+user+"',Password='"+password+"',email='"+email+"',clave_acceso='"+clave_acceso+" WHERE Cedula='"+cedula+"'";
+                String q = "UPDATE Usuario SET Nombre1='"+nombre1+"',Nombre2='"+nombre2+"',Apellido1='"+apellido1+"',Apellido2='"+apellido2+"',User='"+user+"',Password='"+password+"',email='"+email+"',clave_acceso='"+clave_acceso+"' WHERE Cedula='"+cedula+"'";
                 Log.d("Query: ",q);
                 st.executeUpdate(q);
             }

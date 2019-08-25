@@ -120,7 +120,7 @@ public class AsignacionActivity extends AppCompatActivity {
 
             };
 
-            if(idV.getText().toString().equals("")|| clave.getText().toString().equals("")){
+            if(idV.getText().toString().equals("")|| clave.getText().toString().equals("")|| idR.getText().toString().equals("")){
                 Toast.makeText(this, "Primero debe consultar.", Toast.LENGTH_LONG).show();
             }else{
                 new AsyncQuery().execute(datosConexion);
